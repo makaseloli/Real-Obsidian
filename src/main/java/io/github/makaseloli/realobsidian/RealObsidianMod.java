@@ -1,27 +1,21 @@
 package io.github.makaseloli.realobsidian;
 
 import com.mojang.logging.LogUtils;
+import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.slf4j.Logger;
 
-@Mod(RealObsidianMod.MOD_ID)
-public final class RealObsidianMod {
+public final class RealObsidianMod implements ModInitializer {
     public static final String MOD_ID = "realobsidian";
 
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public RealObsidianMod(IEventBus modEventBus) {
-        modEventBus.addListener(this::onCommonSetup);
-    }
-
-    private void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(this::patchObsidianProperties);
+    @Override
+    public void onInitialize() {
+        patchObsidianProperties();
     }
 
     private void patchObsidianProperties() {
