@@ -3,6 +3,10 @@ name: Build MOD Jar
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
+    tags:
+      - 'neoforge-*'
   pull_request:
 
 jobs:
